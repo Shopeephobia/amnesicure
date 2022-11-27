@@ -26,10 +26,13 @@ Kelompok [Sophophobia]() dibimbing oleh Kak Azka Fitria selaku asisten dosen dan
    untuk menyalakan memulai aplikasinya.
 
    ```shell
-   docker build --tag amnesicure .
-   docker run --publish 8000:8000 amnesicure
+   docker-compose up --build -d
    ```
 2. Buka localhost:8000 untuk melihat aplikasinya
+3. Untuk mematikan appnya tinggal masukan perintah berikut kedalam command prompt anda
+   ```shell
+   docker-compose down
+   ```
 
 ### Pengembangan Lokal
 
