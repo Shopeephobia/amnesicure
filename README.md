@@ -1,12 +1,22 @@
-# Super COOL Flashcard App will be coming soon 
+# Amnesicure - An Unorthodox Flashcard Web App
+
+Super COOL Flashcard App will be coming soon!
 ---
-### Sophophobia
-2006596232 - Akbar Maliki Haqoni Jati    
-2006527481 - Muhammad Athallah    
-2006473844 - Muhammad Kenshin Himura Mahmuddin    
-2006526812 - Stefanus Ndaru Wedhatama    
-2006535716 - Teuku Faiz Aryasena    
-Asisten Dosen: Azka Fitria
+
+> Proyek ini dibuat untuk memenuhi tugas kelompok pada mata kuliah Rekayasa Perangkat Lunak (CSCM603125)
+> yang diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia pada Semester Gasal, Tahun Ajaran 2022/2023.
+
+## 👨‍💻 Pengembang Aplikasi 👩‍💻
+
+Proyek ini dibuat oleh kelompok [Sophophobia]() yang beranggotakan sebagai berikut.
+
+- 2006596232 - Akbar Maliki Haqoni Jati
+- 2006527481 - Muhammad Athallah
+- 2006473844 - Muhammad Kenshin Himura Mahmuddin
+- 2006526812 - Stefanus Ndaru Wedhatama
+- 2006535716 - Teuku Faiz Aryasena
+
+Kelompok [Sophophobia]() dibimbing oleh Kak Azka Fitria selaku asisten dosen dan Bu Iis Solichah selaku dosen pengampu mata kuliah Rekayasa Perangkat Lunak.
 
 ## Instruksi Penggunaan
 
@@ -58,3 +68,5 @@ Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nan
 ## Referensi
 
 Athallah
+
+[Sophophobia]: https://github.com/Shopeephobia
