@@ -54,3 +54,7 @@ Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nan
    ```
 
 7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
+
+## Referensi
+
+Athallah
