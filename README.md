@@ -20,6 +20,17 @@ Kelompok [Sophophobia]() dibimbing oleh Kak Azka Fitria selaku asisten dosen dan
 
 ## Instruksi Penggunaan
 
+### Pengembangan Lokal (Docker)
+
+1. Masuk ke dalam direktori yang sudah di-*clone* dan jalankan perintah berikut
+   untuk menyalakan memulai aplikasinya.
+
+   ```shell
+   docker build --tag amnesicure .
+   docker run --publish 8000:8000 amnesicure
+   ```
+2. Buka localhost:8000 untuk melihat aplikasinya
+
 ### Pengembangan Lokal
 
 Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi, ikuti langkah-langkah berikut.
