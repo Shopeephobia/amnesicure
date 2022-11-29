@@ -33,7 +33,12 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not PRODUCTION
 
-ALLOWED_HOSTS = ["*"]
+APP_NAME = os.getenv('APP_NAME', '')
+
+ALLOWED_HOSTS = [f'{APP_NAME}.up.railway.app']
+
+if not PRODUCTION:
+    ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
 
 # Application definition
 
