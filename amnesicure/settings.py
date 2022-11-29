@@ -34,7 +34,7 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 # DEBUG = not PRODUCTION
 
 # For now, DEBUG is enabled to trace the errors
-DEBUG = TRUE
+DEBUG = True
 
 APP_NAME = os.getenv('APP_NAME', '')
 
