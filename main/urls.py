@@ -1,5 +1,4 @@
-from django.urls import path
-
+from django.urls import include, path
 from main.views import *
 
 app_name = 'main'

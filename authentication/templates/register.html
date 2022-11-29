@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Daftar | Amnesicure</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="{% static 'style_login.css' %}">
+   <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+   <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+   <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+</head>
+
+<body>
+    <div class="container  py-5 mx-auto">
+        <div class="card card0">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="card card1">
+                    <div class="row justify-content-center my-auto">
+                        <div class="col-md-8 col-10 my-5">   
+                            <div class=" justify-content-start ">
+                                <div class=" justify-content-start px-3 mb-3"> 
+                                    <img id="logo" src="{% static 'images/logovirus.png' %}"> 
+                                </div> 
+                                <img src="{% static 'images/logotext.png' %}"> 
+                            </div>
+                            <p></p>
+                            <h6 class="msg-info">Daftar</h6>
+                            <form method="POST" action="">
+                                {% csrf_token %} 
+                                <div class="form-group"> 
+                                    <label class="form-control-label ">Username</label>
+                                    {{form.username}} 
+                                </div>
+                                <div class="form-group"> 
+                                    <label class="form-control-label ">Email</label> 
+                                    {{form.email}} 
+                                </div>
+                                <div class="form-group"> 
+                                    <label class="form-control-label ">Password</label> 
+                                    {{form.password1}} 
+                                </div>
+                                <div class="form-group"> 
+                                    <label class="form-control-label ">Confirm Password</label> 
+                                    {{form.password2}} 
+                                </div>
+                                <div class="row justify-content-center my-3 px-3"> 
+                                    <button class="btn-block btn-color" type="submit">Daftar Sekarang</button> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    {{form.errors}}
+                    
+                    <div class="bottom text-center mb-5">
+                        <p href="#" class="sm-text mx-auto mb-3">Sudah punya akun?<button class="btn btn-white ml-2" ><a href="{% url 'login' %}">Klik disini</a></button></p>
+                    </div>
+                </div>
+                <div class="card card2">
+                    <div class="my-auto mx-md-5 px-md-5 right">
+                        <div class="row justify-content-center "> <img src="{% static 'images/logosuntikan.png' %}"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+		/* Because i didnt set placeholder values in forms.py they will be set here using Javascript
+		//We start indexing at one because CSRF_token is considered and input field 
+		 */
+
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username';
+		form_fields[2].placeholder='Email';
+		form_fields[3].placeholder='Enter password';
+		form_fields[4].placeholder='Re-enter Password';
+
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+</body>
+
+</html>
