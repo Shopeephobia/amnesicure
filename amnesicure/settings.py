@@ -43,6 +43,8 @@ ALLOWED_HOSTS = [f'{APP_NAME}.up.railway.app']
 if not PRODUCTION:
     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
 
+CSRF_TRUSTED_ORIGINS = [f'https://{APP_NAME}.up.railway.app']
+
 # Application definition
 
 INSTALLED_APPS = [
