@@ -10,4 +10,4 @@ class PrivateFlashcardDeck(models.Model):
 class PublicFlashcardDeck(models.Model):
     # String id should be assigned by default in Django
     name = models.TextField()
-    # List<PrivateFlashcard> flashcards
+    # List<PublicFlashcard> flashcards
