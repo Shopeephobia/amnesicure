@@ -8,7 +8,7 @@
 {% block content %}
 <table class="deck-table">
     <tr>
-        <th>Nama</th>
+        <th>Nama Dek</th>
         <th>Detail</th>
     </tr>
     {% for deck in decks %}
@@ -20,6 +20,8 @@
     </tr>
     {% endfor %}
 </table>
+
+<br>
 
 <a href="{% url 'deck:create_deck' %}">Buat Dek Baru</a>
 {% endblock content %}

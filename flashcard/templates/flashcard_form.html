@@ -1,9 +1,14 @@
-<html>
-    <body>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_table }}
-            <input type="submit">
-        </form>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Kartu Baru</title>
+{% endblock meta %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit">
+</form>
+{% endblock content %}
