@@ -14,7 +14,15 @@ from deck.models import PrivateFlashcardDeck
 def list_flashcard(request, pk):
     deck_parent = PrivateFlashcardDeck.objects.get(pk=pk)
     list_flashcard = PrivateFlashcard.objects.filter(deck=deck_parent)
-    return render(request,'flashcard_list.html',{'list_flashcard':list_flashcard})
+
+    context = {
+        'deck_name': deck_parent.name,
+        'deck_pk': pk,
+        'list_flashcard': list_flashcard,
+    }
+
+
+    return render(request,'flashcard_list.html',context)
 
 def form_flashcard(request, pk):
     form = FlashcardForm(request.POST or None)
