@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <div class="ex-basic-1 pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Tuliskan flashcard</h2>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                
+                <br>
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        <!-- Form -->
+                        <form id="harapan-form" method="POST" action="">
+                            <p>Pertanyaan</p>
+                            <div class="bulletless-form" id="feeling">
+                                {{ form.question }}
+                            </div>
+                            <p>jawaban</p>
+                            <div class="bulletless-form" id="factor">
+                                {{ form.answer }}
+                            </div>
+                            <br>
+                            <div>
+                                <input class="btn-solid-lg" name="submit" type="submit" value="Submit" />
+                            </div>
+                        </form>
+                        <!-- end of harapan form -->
+
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div>
+        
+        <script type="text/javascript">
+            $(document).on('submit', '#flashcard-form', function(e) {
+                e.preventDefault();
+                var form = $("#flashcard-form");
+                
+                $.ajax({
+                    url:'',
+                    type: 'POST',
+                    data: form.serialize(),
+                    dataType: 'json',
+                    header: {'X-CSRFToken': '{% csrf_token %}'},
+                    success: function(response) {
+                        var success = response['success']
+                        if(success){
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Terima kasih!',
+                                text: 'Pesan Anda sudah terkirim',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#0b36a8',
+                            })
+                            
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Form yang Anda isi tidak valid!',
+                                text: 'Silakan mengisi form kembali',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#0b36a8',
+                            })
+                        }
+                        document.getElementById("flashcard-form").reset();
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Upss, terjadi error...',
+                            text: 'Coba refresh halaman ini dan kirim ulang pesan Anda',
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#0b36a8',
+                        })
+                        document.getElementById("flashcard-form").reset();
+                    }
+                })
+            })
+            </script>
+    </body>
+</html>
