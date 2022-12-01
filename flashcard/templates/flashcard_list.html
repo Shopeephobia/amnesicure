@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="ex-basic-1 pt-5 pb-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-10 offset-xl-1">
-                        <div class="row">
-                            <div class="col-lg-12 riwayat-kegiatan">
-                                {% for i in list_flashcard %}
-                                <div class="card mb-4 past-card">
-                                    <div class="card-body">
-                                        <h4>{{i.question}}</h4>
-                                        <p>{{i.answer}}</p>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div> 
-                </div> 
-            </div> 
-        </div> 
+        {% for i in list_flashcard %}
+        <div class="card mb-4 past-card">
+            <div class="card-body">
+                <h4>{{i.question}}</h4>
+                <p>{{i.answer}}</p>
+            </div>
+        </div>
+        {% endfor %}
     </body>
 </html>

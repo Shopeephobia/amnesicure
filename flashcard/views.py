@@ -13,17 +13,14 @@ def list_flashcard(request):
     list_flashcard = FlashCard.objects.all
     return render(request,'flashcard_list.html',{'list_flashcard':list_flashcard})
 
-def add_flashcard(request):
-    if request.method == 'POST':
+def form_flashcard(request):
+    form = FlashCardForm()
+
+    if request.method == "POST":
         form = FlashCardForm(request.POST)
         if form.is_valid():
-            flashcard_form = form.save(commit=False)
-            # flashcard_form.user = request.user
-            flashcard_form.save()
-            return response.HttpResponseRedirect('/')
+            form.save()
 
-    else:
-        form = FlashCardForm()
+    context = {'form':form}
 
-    
-    return render(request, 'flashcard_form.html', {'form':form})
+    return render(request, 'flashcard_form.html', context)
