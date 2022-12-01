@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% for i in list_flashcard %}
+        <div class="card mb-4 past-card">
+            <div class="card-body">
+                <h4>{{i.question}}</h4>
+                <p>{{i.answer}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+</html>
