@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import FlashCard
+from .models import PrivateFlashcard, PublicFlashcard
 
-admin.site.register(FlashCard)
+admin.site.register(PrivateFlashcard)
+admin.site.register(PublicFlashcard)

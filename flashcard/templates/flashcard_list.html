@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
     <body>
-        {% for i in list_flashcard %}
-        <div class="card mb-4 past-card">
+        <h1>Nama Dek: {{ deck_name }}</h1>
+        <table>
+            <tr>
+                <th>Pertanyaan</th>
+                <th>Jawaban</th>
+            </tr>
+            {% for i in list_flashcard %}
+            <tr>
+                <td>{{ i.question }}</td>
+                <td>{{ i.answer }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!-- <div class="card mb-4 past-card">
             <div class="card-body">
                 <h4>{{i.question}}</h4>
                 <p>{{i.answer}}</p>
             </div>
-        </div>
-        {% endfor %}
+        </div> -->
+        <br>
+        <a href="{% url 'flashcard:add_flashcard' deck_pk %}">Buat Kartu Baru</a>
+        <br>
+        <a href="{% url 'deck:index' %}">Kembali ke Daftar Dek</a>
     </body>
 </html>
