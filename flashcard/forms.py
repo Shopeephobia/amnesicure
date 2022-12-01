@@ -1,8 +1,7 @@
 from django.forms import ModelForm
-from .models import FlashCard
+from flashcard.models import PrivateFlashcard
 
-
-class FlashCardForm(ModelForm):
+class FlashcardForm(ModelForm):
     class Meta:
-        model = FlashCard
+        model = PrivateFlashcard
         fields=['question', 'answer']

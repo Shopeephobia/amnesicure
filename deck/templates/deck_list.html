@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Daftar Dek</title>
+{% endblock meta %}
+
+{% block content %}
+<table class="deck-table">
+    <tr>
+        <th>Nama</th>
+        <th>Detail</th>
+    </tr>
+    {% for deck in decks %}
+    <tr>
+        <td>{{ deck.name }}</td>
+        <td>
+            <a href="{% url 'flashcard:list_flashcard' deck.pk %}">Detail</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
