@@ -5,7 +5,7 @@ from deck.models import PrivateFlashcardDeck
 from deck.forms import DeckForm
 
 def deck_index(request):
-    decks = PrivateFlashcardDeck.objects.all
+    decks = PrivateFlashcardDeck.objects.filter(user=request.user)
     return render(request,'deck_list.html',{'decks': decks})
 
 def create_deck(request):
