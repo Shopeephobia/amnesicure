@@ -1,0 +1,52 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  Coverage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: pip-${{ github.job }}-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          pip-
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Collect static files
+      run: python manage.py collectstatic --no-input
+    - name: Install coverage
+      run: pip install coverage
+    - name: Download unit test coverage
+      uses: actions/download-artifact@v2
+      with:
+        name: unittest-coverage
+    - name: Download functional test coverage
+      uses: actions/download-artifact@v2
+      with:
+        name: functionaltest-coverage
+    - name: Combine unit test and functional test coverage
+      run: coverage combine
+    - name: Show coverage report
+      run: coverage report -m
+    - name: Generate coverage report to HTML
+      run: coverage html
+    - name: Generate coverage report to XML
+      run: coverage xml
+    - name: Upload overall test coverage
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: htmlcov/
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v3
