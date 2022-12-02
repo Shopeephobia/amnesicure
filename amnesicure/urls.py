@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('authentication/', include('authentication.urls')),
+    path('flashcard/',include('flashcard.urls')),
+    path('deck/',include('deck.urls')),
 ]

@@ -31,9 +31,19 @@ SECRET_KEY = 'django-insecure-lynitf%dkw(f7#)j6#88=3#io_(bkspo4ndkcbn9h*@+eyiob&
 PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not PRODUCTION
+# DEBUG = not PRODUCTION
 
-ALLOWED_HOSTS = ["*"]
+# For now, DEBUG is enabled to trace the errors
+DEBUG = True
+
+APP_NAME = os.getenv('APP_NAME', '')
+
+ALLOWED_HOSTS = [f'{APP_NAME}.up.railway.app']
+
+if not PRODUCTION:
+    ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
+
+CSRF_TRUSTED_ORIGINS = [f'https://{APP_NAME}.up.railway.app']
 
 # Application definition
 
@@ -46,6 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'authentication',
+    'flashcard',
+    'deck',
 ]
 
 MIDDLEWARE = [
