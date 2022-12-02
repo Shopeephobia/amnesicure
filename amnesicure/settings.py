@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'authentication',
     'flashcard',
     'deck',
+    'srsreview',
 ]
 
 MIDDLEWARE = [
