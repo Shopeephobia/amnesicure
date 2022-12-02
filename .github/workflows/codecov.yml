@@ -26,8 +26,10 @@ jobs:
     - name: Collect static files
       run: python manage.py collectstatic --no-input
     - name: Run unit tests
+      env:
+          APP_NAME: ${{ secrets.APP_NAME }}
       run: |
-        coverage run --parallel --include="./*" --omit="manage.py,project_django/*" \
+        coverage run --parallel --include="./*" --omit="manage.py,$APP_NAME/*" \
         manage.py test --exclude-tag=functional
     - name: Upload unit test coverage
       uses: actions/upload-artifact@v3
@@ -50,14 +52,16 @@ jobs:
         restore-keys: |
           pip-
     - name: Install ChromiumDriver
-      run: sudo apt-get update -q && sudo apt-get install -yq chromium-chromedriver
+      uses: nanasess/setup-chromedriver@v1
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: Collect static files
       run: python manage.py collectstatic --no-input
     - name: Run functional tests
+      env:
+        APP_NAME: ${{ secrets.APP_NAME }}
       run: |
-        coverage run --parallel --include="./*" --omit="manage.py,project_django/*" \
+        coverage run --parallel --include="./*" --omit="manage.py,$APP_NAME/*" \
         manage.py test --tag=functional
     - name: Upload functional test coverage
       uses: actions/upload-artifact@v3
