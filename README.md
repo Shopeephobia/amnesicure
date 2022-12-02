@@ -1,6 +1,7 @@
 # Amnesicure - An Unorthodox Flashcard Web App
 
 Super COOL Flashcard App will be coming soon!
+
 ---
 
 > Proyek ini dibuat untuk memenuhi tugas kelompok pada mata kuliah Rekayasa Perangkat Lunak (CSCM603125)

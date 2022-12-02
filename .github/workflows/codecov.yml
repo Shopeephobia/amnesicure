@@ -10,12 +10,12 @@ jobs:
   UnitTest:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        python-version: 3.8
-    - uses: actions/cache@v2
+        python-version: '3.10'
+    - uses: actions/cache@v3
       with:
         path: ~/.cache/pip
         key: pip-${{ github.job }}-${{ hashFiles('requirements.txt') }}
@@ -30,7 +30,7 @@ jobs:
         coverage run --parallel --include="./*" --omit="manage.py,project_django/*" \
         manage.py test --exclude-tag=functional
     - name: Upload unit test coverage
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: unittest-coverage
         path: .coverage*
@@ -38,12 +38,12 @@ jobs:
   FunctionalTest:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        python-version: 3.8
-    - uses: actions/cache@v2
+        python-version: '3.10'
+    - uses: actions/cache@v3
       with:
         path: ~/.cache/pip
         key: pip-${{ github.job }}-${{ hashFiles('requirements.txt') }}
@@ -60,13 +60,14 @@ jobs:
         coverage run --parallel --include="./*" --omit="manage.py,project_django/*" \
         manage.py test --tag=functional
     - name: Upload functional test coverage
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: functionaltest-coverage
         path: .coverage*
   
   Coverage:
     runs-on: ubuntu-latest
+    needs: [UnitTest, FunctionalTest]
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
