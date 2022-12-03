@@ -5,6 +5,7 @@ from deck.models import PrivateFlashcardDeck
 from .models import SRSReview
 import datetime
 from json import dumps
+from django.http import JsonResponse, HttpResponseBadRequest
 
 reviewSessions:dict[int, SRSReview] = {}
 
@@ -51,6 +52,9 @@ def start(request):
 
 @login_required(login_url="login")
 def review(request):
+    if request.method == 'POST':
+        return answerHandler(request)
+
     flashcards:list[PrivateFlashcard] = []
     if (request.user.id in reviewSessions.keys() and reviewSessions[request.user.id].isValid()):
         # Continue session
@@ -85,3 +89,13 @@ def review(request):
     # TODO: Frontend Implementation
     return None
     
+def answerHandler(request):
+    pk = request.POST.get('id', -1)
+    answer = request.POST.get('answer', False)
+
+    if (pk != -1):
+        flashcard = PrivateFlashcard.objects.get(pk=pk)
+        reviewSessions[request.user.id].answerFlashcard(flashcard, answer)
+        return JsonResponse({'message':'Success'})
+    
+    return HttpResponseBadRequest()
