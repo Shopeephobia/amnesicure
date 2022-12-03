@@ -27,6 +27,10 @@ def fetch_public_deck(request):
     public_decks = PublicFlashcardDeck.objects.filter(isVerified = True)
     return render(request,'public_list.html',{'public_decks': public_decks})
 
+def fetch_request_private(request):
+    requests = PublishPrivateDeck.objects.filter(user=request.user)
+    return render(request,'request_private_list.html',{'requests': requests})
+
 
 def create_request(request, pk):
     private_deck = PrivateFlashcardDeck.objects.get(pk=pk)
