@@ -22,4 +22,5 @@ urlpatterns = [
     path('authentication/', include('authentication.urls')),
     path('flashcard/',include('flashcard.urls')),
     path('deck/',include('deck.urls')),
+    path('review/',include('srsreview.urls')),
 ]
