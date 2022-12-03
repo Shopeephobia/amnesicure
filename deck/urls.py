@@ -7,6 +7,7 @@ urlpatterns = [
     path('', deck_index, name='index'),
     path('new', create_deck, name='create_deck'),
     path('public', fetch_public_deck, name='create_deck'),
+    path('requests', create_request, name='create_request'),
     path('requests/new/<int:pk>', create_request, name='create_request'),
     path('admin/requests', fetch_requests, name='fetch_requests'),
     path('admin/requests/verify/<int:pk>', verify_request, name='verify_deck'),
