@@ -28,8 +28,8 @@ def fetch_public_deck(request):
     return render(request,'public_list.html',{'public_decks': public_decks})
 
 
-def create_request(request, pkPriv):
-    private_deck = PrivateFlashcardDeck.objects.get(pk=pkPriv)
+def create_request(request, pk):
+    private_deck = PrivateFlashcardDeck.objects.get(pk=pk)
     public_deck = None
 
     # Check if the deck is already published
@@ -59,9 +59,9 @@ def fetch_requests(request):
         return render(request,'request_list.html',{'requests': requests})
     return HttpResponseForbidden()
 
-def verify_request(request, pkPub):
+def verify_request(request, pk):
     if request.user.is_superuser:
-        pub_deck = PublishPrivateDeck.objects.get(pk=pkPub)
+        pub_deck = PublishPrivateDeck.objects.get(pk=pk)
         pub_deck.isVerified = True
         pub_deck.public_deck = PublicFlashcardDeck(name=pub_deck.private_deck.name)
         pub_deck.public_deck.save()
@@ -74,9 +74,9 @@ def verify_request(request, pkPub):
         return JsonResponse(response)
     return HttpResponseForbidden()
 
-def reject_request(request, pkPub):
+def reject_request(request, pk):
     if request.user.is_superuser:
-        pub_deck = PublishPrivateDeck.objects.get(pk=pkPub)
+        pub_deck = PublishPrivateDeck.objects.get(pk=pk)
         pub_deck.delete()
         response = {
         'msg':  'Request berhasil ditolak',
