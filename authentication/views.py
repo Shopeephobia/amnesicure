@@ -57,7 +57,7 @@ def loginPage(request):
 
 def logoutUser(request) :
     logout(request)
-    return redirect('login')
+    return redirect('/authentication/login')
 
 @login_required(login_url="login")
 def json_data(request) :
@@ -85,7 +85,7 @@ def registerPage(request) :
 
 
 
-            return redirect('login')
+            return redirect('/authentication/login')
 
     context = {'form' : form}
     return render(request, 'register.html', context)
