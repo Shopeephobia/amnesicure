@@ -2,7 +2,7 @@ body {
     color: #000;
     overflow-x: hidden;
     height: 100%;
-    background-image: linear-gradient(to right, #FFB1B1, #FFB1B1);
+    background-image: linear-gradient(to right, #F0FFFF, #F0FFFF);
     background-repeat: no-repeat;
     min-height: 100vh
 }
@@ -39,7 +39,9 @@ button:focus {
 }
 
 
-
+.container {
+    filter: drop-shadow(0 0 0.75rem #89CFF0);
+}
 .card {
     border-radius: 50px !important;
     border: none #fff !important
@@ -56,7 +58,7 @@ button:focus {
 
 .card2 {
     width: 50%;
-    background-image: linear-gradient(to right, #D25555, #D25555);
+    background-image: linear-gradient(to right, #0096FF, #0096FF);
 }
 
 #logo {
@@ -103,7 +105,7 @@ button:focus {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: #fff;
-    background-image: linear-gradient(to right, #FF0D0D, #FF0D0D);
+    background-image: linear-gradient(to right, #0096FF, #0096FF);
     padding: 15px;
     cursor: pointer;
     border: none !important;
