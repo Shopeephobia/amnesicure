@@ -4,6 +4,7 @@ body {
     height: 100%;
     background-image: linear-gradient(to right, #FFB1B1, #FFB1B1);
     background-repeat: no-repeat;
+    min-height: 100vh
 }
 
 input,
