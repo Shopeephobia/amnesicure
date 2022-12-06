@@ -26,7 +26,7 @@ textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #D25555 !important;
+    border: 1px solid #0096FF !important;
     outline-width: 0;
     font-weight: 400
 }
@@ -114,14 +114,14 @@ button:focus {
 
 .btn-color:hover {
     color: #000;
-    background-image: linear-gradient(to right, #FFB1B1, #FFB1B1)
+    background-image: linear-gradient(to right, #0096FF, #0096FF)
     
 }
 
 .btn-white {
     border-radius: 50px;
     color: #D500F9;
-    background-color: #FF0D0D;
+    background-color: #0096FF;
     padding: 8px 40px;
     cursor: pointer;
     border: 2px solid #000 !important
@@ -129,7 +129,7 @@ button:focus {
 
 .btn-white:hover {
     color: #fff;
-    background-image: linear-gradient(to right, #FF0D0D, #FF0D0D)
+    background-image: linear-gradient(to right, #0096FF, #0096FF)
 }
 
 a {
