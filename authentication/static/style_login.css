@@ -2,7 +2,7 @@ body {
     color: #000;
     overflow-x: hidden;
     height: 100%;
-    background-image: linear-gradient(to right, #F0FFFF, #F0FFFF);
+    background-image: linear-gradient(to right, #BFFFE0, #BFFFE0);
     background-repeat: no-repeat;
     min-height: 100vh
 }
@@ -26,7 +26,7 @@ textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #0096FF !important;
+    border: 1px solid #20C997 !important;
     outline-width: 0;
     font-weight: 400
 }
@@ -58,12 +58,12 @@ button:focus {
 
 .card2 {
     width: 50%;
-    background-image: linear-gradient(to right, #0096FF, #0096FF);
+    background-image: linear-gradient(to right, #20C997, #20C997);
 }
 
 #logo {
     width: 70px;
-    height: 60px
+    height: 100px
 }
 
 .heading {
@@ -105,7 +105,7 @@ button:focus {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: #fff;
-    background-image: linear-gradient(to right, #0096FF, #0096FF);
+    background-image: linear-gradient(to right, #20C997, #20C997);
     padding: 15px;
     cursor: pointer;
     border: none !important;
@@ -114,14 +114,14 @@ button:focus {
 
 .btn-color:hover {
     color: #000;
-    background-image: linear-gradient(to right, #0096FF, #0096FF)
+    background-image: linear-gradient(to right, #BFFFE0, #BFFFE0)
     
 }
 
 .btn-white {
     border-radius: 50px;
-    color: #D500F9;
-    background-color: #0096FF;
+    color: #BFFFE0;
+    background-color: #BFFFE0;
     padding: 8px 40px;
     cursor: pointer;
     border: 2px solid #000 !important
@@ -129,7 +129,7 @@ button:focus {
 
 .btn-white:hover {
     color: #fff;
-    background-image: linear-gradient(to right, #0096FF, #0096FF)
+    background-image: linear-gradient(to right, #20C997, #20C997)
 }
 
 a {
