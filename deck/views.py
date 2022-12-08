@@ -24,7 +24,7 @@ def create_deck(request):
     return render(request, 'deck_form.html', context)
 
 def fetch_public_deck(request):
-    public_decks = PublicFlashcardDeck.objects.filter(isVerified = True)
+    public_decks = PublishPrivateDeck.objects.filter(isVerified = True)
     return render(request,'public_list.html',{'public_decks': public_decks})
 
 def fetch_request_private(request):

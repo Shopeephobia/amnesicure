@@ -23,6 +23,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'auth:login' %}">Login</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'deck:fetch_public_deck' %}">Public Deck</a>
+        </li>
         {% else %}
         <li class="nav-item dropdown">
           <a
@@ -39,6 +42,9 @@
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="{% url 'deck:create_deck' %}">Buat Dek Baru</a></li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'deck:fetch_public_deck' %}">Public Deck</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'auth:logout' %}">Logout</a>
