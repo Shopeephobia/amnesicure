@@ -35,24 +35,31 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Dek Kartu
+            Daftar Dek Kartu
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'deck:index' %}">Daftar Dek Pribadi</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="{% url 'deck:create_deck' %}">Buat Dek Baru</a></li>
+            <li><a class="dropdown-item" href="{% url 'deck:fetch_public_deck' %}">Dek Kartu Publik</a></li>
+            <li><a class="dropdown-item" href="{% url 'deck:index' %}">Dek Kartu Pribadi</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'deck:fetch_public_deck' %}">Public Deck</a>
-        </li>
-        {% if request.user.is_superuser %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'deck:fetch_requests' %}">Request Publikasi</a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'deck:fetch_request_private' %}">Request Saya</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Administrasi Dek
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'deck:create_deck' %}">Buat Dek Baru</a></li>
+            <li><a class="dropdown-item" href="{% url 'deck:fetch_request_private' %}">Pengajuan Dek Saya</a></li>
+            {% if request.user.is_superuser %}
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="{% url 'deck:fetch_requests' %}">Pengajuan Publikasi Dek</a></li>
+            {% endif %}
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'auth:logout' %}">Logout</a>
