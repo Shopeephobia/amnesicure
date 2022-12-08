@@ -11,5 +11,5 @@ class PublicFlashcardDeck(models.Model):
 class PublishPrivateDeck(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     private_deck = models.ForeignKey(PrivateFlashcardDeck, on_delete=models.CASCADE)
-    public_deck = models.ForeignKey(PublicFlashcardDeck, on_delete=models.CASCADE)
+    public_deck = models.ForeignKey(PublicFlashcardDeck, on_delete=models.CASCADE, null=True, blank=True)
     isVerified = models.BooleanField(default=False)

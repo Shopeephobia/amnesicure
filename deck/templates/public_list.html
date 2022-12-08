@@ -18,7 +18,7 @@
                         <h5 class="card-title">{{ deck.public_deck.name }}</h5>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary btn-block">View Deck</a>
+                        <a href="{% url 'flashcard:list_flashcard_public' deck.public_deck.pk %}" class="btn btn-primary btn-block">View Deck</a>
                         <a href="#" class="btn btn-secondary btn-block">Import Deck</a>
                     </div>
                 </div>

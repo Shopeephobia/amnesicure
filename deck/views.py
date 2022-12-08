@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http.response import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 from deck.models import PrivateFlashcardDeck, PublicFlashcardDeck, PublishPrivateDeck
 from deck.forms import DeckForm
+from flashcard.models import PrivateFlashcard, PublicFlashcard
 
 def deck_index(request):
     decks = PrivateFlashcardDeck.objects.filter(user=request.user)
@@ -39,21 +40,17 @@ def create_request(request, pk):
     # Check if the deck is already published
     try:
         public_deck = PublishPrivateDeck.objects.get(private_deck=private_deck)
-        response = {
-        'msg':  'Request sudah pernah dibuat sebelumnya',
-        'id' : 0
-            }
-        return JsonResponse(response)
+        message = 'Request sudah pernah dibuat sebelumnya'
+        decks = PrivateFlashcardDeck.objects.filter(user=request.user)
+        return render(request,'deck_list.html',{'decks': decks, 'message': message})
 
     except PublishPrivateDeck.DoesNotExist: 
         deck_request = PublishPrivateDeck(user=request.user, private_deck=private_deck, public_deck=public_deck, isVerified=False)
         deck_request.save()
 
-    response = {
-    'msg':  'Request anda berhasil dibuat',
-    'id' : 1
-        }
-    return JsonResponse(response)
+    message = 'Request berhasil dibuat'
+    decks = PrivateFlashcardDeck.objects.filter(user=request.user)
+    return render(request,'deck_list.html',{'decks': decks, 'message': message})
 
 
 def fetch_requests(request):
@@ -63,28 +60,32 @@ def fetch_requests(request):
         return render(request,'request_list.html',{'requests': requests})
     return HttpResponseForbidden()
 
+
 def verify_request(request, pk):
     if request.user.is_superuser:
         pub_deck = PublishPrivateDeck.objects.get(pk=pk)
         pub_deck.isVerified = True
         pub_deck.public_deck = PublicFlashcardDeck(name=pub_deck.private_deck.name)
+        card_list = PrivateFlashcard.objects.filter(deck=pub_deck.private_deck)
         pub_deck.public_deck.save()
         pub_deck.save()
+        
+        for card in card_list:
+            new_pub_card = PublicFlashcard(question=card.question, answer=card.answer, deck=pub_deck.public_deck)
+            new_pub_card.save()
 
-        response = {
-        'msg':  'Request berhasil diterima',
-        'id' : 1
-            }
-        return JsonResponse(response)
+
+        requests = PublishPrivateDeck.objects.filter(isVerified = False)
+        message = 'Request berhasil diverifikasi'
+        return render(request,'request_list.html',{'requests': requests,'message': message})
     return HttpResponseForbidden()
 
 def reject_request(request, pk):
     if request.user.is_superuser:
         pub_deck = PublishPrivateDeck.objects.get(pk=pk)
         pub_deck.delete()
-        response = {
-        'msg':  'Request berhasil ditolak',
-        'id' : 0
-            }
-        return JsonResponse(response)
+
+        requests = PublishPrivateDeck.objects.filter(isVerified = False)
+        message = 'Request berhasil ditolak'
+        return render(request,'request_list.html',{'requests': requests,'message': message})
     return HttpResponseForbidden()

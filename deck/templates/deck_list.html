@@ -3,9 +3,23 @@
 
 {% block meta %}
 <title>Daftar Dek</title>
+<script>
+    function dismiss(obj) {
+    $(obj).parents('div').fadeOut();
+}
+</script>
 {% endblock meta %}
 
 {% block content %}
+
+{% if decks|length == 0 %}
+    <p>Belum ada dek yang dibuat</p>
+{% endif %}
+
+{% if message %}
+    <p style="display:block;" onclick="dismiss(this);">{{ message }}</p>
+{% endif %}
+
 <table class="deck-table">
     <tr>
         <th>Nama Dek</th>
@@ -16,6 +30,7 @@
         <td>{{ deck.name }}</td>
         <td>
             <a href="{% url 'flashcard:list_flashcard' deck.pk %}">Detail</a>
+            <a href="{% url 'deck:create_request' deck.pk %}">Request Publish</a>
         </td>
     </tr>
     {% endfor %}
