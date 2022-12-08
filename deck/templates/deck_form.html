@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 
 {% block meta %}
-<title>Dek Baru</title>
+<title>Dek Baru | Amnesicure</title>
 {% endblock meta %}
 
 {% block content %}
+<h1 class="text-center mt-4 mb-4">Buat Dek Baru</h1>
+
 <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_table }}
-    <input type="submit">
+    <div class="d-grid col-6 mx-auto">
+        {{ form.name|as_crispy_field }}
+    </div>
+    <div class="col-6 mx-auto">
+        <button type="submit" class="btn btn-success">Simpan</button>
+    </div>
 </form>
 {% endblock content %}
