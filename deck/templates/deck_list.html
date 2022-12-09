@@ -11,7 +11,14 @@
 
 <br>
 
+{% if message %}
+<div class="text-center">
+    <p style="display:block;" onclick="dismiss(this);">{{ message }}</p>
+</div>
+{% endif %}
+
 {% if decks|length == 0 %}
+<br>
 <h3 class="text-center mt-4 mb-4">Belum ada dek yang dibuat.</h3>
 {% else %}
 <div class="d-flex flex-wrap m-4">
@@ -30,12 +37,6 @@
         </div>
         {% endfor %}
     </div>
-</div>
-{% endif %}
-
-{% if message %}
-<div class="text-center">
-    <p style="display:block;" onclick="dismiss(this);">{{ message }}</p>
 </div>
 {% endif %}
 
