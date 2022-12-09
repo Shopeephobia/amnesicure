@@ -2,6 +2,8 @@
 
 Super COOL Flashcard App will be coming soon!
 
+[![codecov](https://codecov.io/gh/Shopeephobia/amnesicure/branch/main/graph/badge.svg?token=UCJZWUT2ZM)](https://codecov.io/gh/Shopeephobia/amnesicure)
+
 ---
 
 > Proyek ini dibuat untuk memenuhi tugas kelompok pada mata kuliah Rekayasa Perangkat Lunak (CSCM603125)

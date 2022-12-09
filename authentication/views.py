@@ -12,10 +12,8 @@ from django.http.response import HttpResponse, JsonResponse, HttpResponseRedirec
 from django.core import serializers
 
 # Create your views here.
-def index(request):
-    return render(request, 'Homepage.html', {})
 
-def cekLogin(request):
+def loginCheck(request):
     if request.user.is_authenticated :
         return render(request, 'formpage.html', {})
     else:
@@ -59,7 +57,7 @@ def loginPage(request):
 
 def logoutUser(request) :
     logout(request)
-    return redirect('login')
+    return redirect('/authentication/login')
 
 @login_required(login_url="login")
 def json_data(request) :
@@ -75,7 +73,7 @@ def logoutUser(request) :
     logout(request)
     return redirect('/')
 
-def daftarPage(request) :
+def registerPage(request) :
     form = CreateUserForm()
 
     if request.method == 'POST' :
@@ -87,7 +85,7 @@ def daftarPage(request) :
 
 
 
-            return redirect('login')
+            return redirect('/authentication/login')
 
     context = {'form' : form}
     return render(request, 'register.html', context)

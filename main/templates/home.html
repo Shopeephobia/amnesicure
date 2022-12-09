@@ -8,13 +8,4 @@
 {% block content %}
   <h1>Hello, world!</h1>
   <p><img src="{% static 'img/django-logo-negative.svg' %}"></p>
-  {% if not request.user.is_authenticated %}
-  <li class="nav-item active">
-      <a class="nav-link" href="{% url 'login' %}">Login</a>
-  </li>
-  {% else %}
-  <li class="nav-item active">
-      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-  </li>
-  {% endif %}
 {% endblock content %}
