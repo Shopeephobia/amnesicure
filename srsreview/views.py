@@ -21,7 +21,7 @@ def index(request):
     else:
         decks = list(PrivateFlashcardDeck.objects.filter(user=request.user))
         for deck in decks:
-            temp_flashcards = PrivateFlashcard.objects.filter(deck=deck).filter(nextReviewDate__lte=datetime.datetime.now)
+            temp_flashcards = PrivateFlashcard.objects.filter(deck=deck).filter(nextReviewDate__lte=datetime.datetime.now())
             flashcards.extend(list(temp_flashcards))
 
     context = {
@@ -30,14 +30,14 @@ def index(request):
     }
 
     # TODO: Frontend Implementation
-    return None
+    return render(request, 'review_dashboard.html', context)
 
 @login_required(login_url="login")
 def start(request):
     flashcards = []
     decks = list(PrivateFlashcardDeck.objects.filter(user=request.user))
     for deck in decks:
-        temp_flashcards = PrivateFlashcard.objects.filter(deck=deck).filter(nextReviewDate__lte=datetime.datetime.now)
+        temp_flashcards = PrivateFlashcard.objects.filter(deck=deck).filter(nextReviewDate__lte=datetime.datetime.now())
         flashcards.extend(list(temp_flashcards))
 
     if (len(flashcards) == 0):
