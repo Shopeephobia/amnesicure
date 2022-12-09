@@ -12,13 +12,13 @@
 <br>
 
 {% if decks|length == 0 %}
-<h3 class="text-center mt-4 mb-4">Belum ada dek yang dibuat</h3>
+<h3 class="text-center mt-4 mb-4">Belum ada dek yang dibuat.</h3>
 {% else %}
-<div class="d-flex flex-wrap m-4">    
-    {% for deck in decks %}
+<div class="d-flex flex-wrap m-4">
     <div class="col">
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
+        {% for deck in decks %}
+        <div class="col-sm mx-auto">
+            <div class="card h-100 mt-4">
                 <div class="card-body">
                     <h5 class="card-title">{{ deck.name }}</h5>
                 </div>
@@ -28,8 +28,8 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endif %}
 
@@ -44,4 +44,6 @@
 <div class="d-grid gap-2 col-4 mx-auto">
     <a href="{% url 'deck:create_deck' %}" class="btn btn-info btn-block">Buat Dek Baru</a>
 </div>
+
+<br>
 {% endblock content %}
