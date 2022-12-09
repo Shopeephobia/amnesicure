@@ -10,24 +10,26 @@
 
     <div class="d-flex flex-wrap m-4">
         
-        {% for request in requests %}
+        
         <div class="col">
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                {% for request in requests %}
+                <div class="card h-100 mt-4">
                     <div class="card-body">
                         <h5 class="card-title">{{ request.private_deck.name }}</h5>
                         <p>Dibuat Oleh: {{ request.user.username }}</p>
                         <p>Status Verifikasi: {{ request.isVerified }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'flashcard:list_flashcard_public' request.private_deck.pk %}" class="btn btn-primary btn-block">View Deck</a>
+                        <a href="{% url 'flashcard:list_flashcard_admin' request.private_deck.pk %}" class="btn btn-primary btn-block">View Deck</a>
                         <a href="{% url 'deck:verify_deck' request.pk %}" class="btn btn-success btn-block">Accept & Publish</a>
                         <a href="{% url 'deck:reject_deck' request.pk %}" class="btn btn-danger btn-block">Reject</a>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
+        
 
     </div>
 {% endblock content %}
