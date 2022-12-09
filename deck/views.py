@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 from deck.models import PrivateFlashcardDeck, PublicFlashcardDeck, PublishPrivateDeck
 from deck.forms import DeckForm
 from flashcard.models import PrivateFlashcard, PublicFlashcard
 
+@login_required(login_url="auth:login")
 def deck_index(request):
     decks = PrivateFlashcardDeck.objects.filter(user=request.user)
     return render(request,'deck_list.html',{'decks': decks})
 
+@login_required(login_url="auth:login")
 def create_deck(request):
     form = DeckForm(request.POST or None)
 
@@ -28,11 +31,12 @@ def fetch_public_deck(request):
     public_decks = PublishPrivateDeck.objects.filter(isVerified = True)
     return render(request,'public_list.html',{'public_decks': public_decks})
 
+@login_required(login_url="auth:login")
 def fetch_request_private(request):
     requests = PublishPrivateDeck.objects.filter(user=request.user)
     return render(request,'request_private_list.html',{'requests': requests})
 
-
+@login_required(login_url="auth:login")
 def create_request(request, pk):
     private_deck = PrivateFlashcardDeck.objects.get(pk=pk)
     public_deck = None
@@ -52,7 +56,7 @@ def create_request(request, pk):
     decks = PrivateFlashcardDeck.objects.filter(user=request.user)
     return render(request,'deck_list.html',{'decks': decks, 'message': message})
 
-
+@login_required(login_url="auth:login")
 def fetch_requests(request):
     if request.user.is_superuser:
         requests = PublishPrivateDeck.objects.filter(isVerified = False)
@@ -60,7 +64,7 @@ def fetch_requests(request):
         return render(request,'request_list.html',{'requests': requests})
     return HttpResponseForbidden()
 
-
+@login_required(login_url="auth:login")
 def verify_request(request, pk):
     if request.user.is_superuser:
         pub_deck = PublishPrivateDeck.objects.get(pk=pk)
@@ -80,6 +84,7 @@ def verify_request(request, pk):
         return render(request,'request_list.html',{'requests': requests,'message': message})
     return HttpResponseForbidden()
 
+@login_required(login_url="auth:login")
 def reject_request(request, pk):
     if request.user.is_superuser:
         pub_deck = PublishPrivateDeck.objects.get(pk=pk)
