@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from flashcard.models import PrivateFlashcard
 from deck.models import PrivateFlashcardDeck
 from .models import SRSReview
 import datetime
 from json import dumps
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
 reviewSessions:dict[int, SRSReview] = {}
 
 # Create your views here.
-@login_required(login_url="login")
+@login_required(login_url="auth:login")
 def index(request):
     flashcards = []
     isPrevSession = False
@@ -32,7 +34,7 @@ def index(request):
     # TODO: Frontend Implementation
     return render(request, 'review_dashboard.html', context)
 
-@login_required(login_url="login")
+@login_required(login_url="auth:login")
 def start(request):
     flashcards = []
     decks = list(PrivateFlashcardDeck.objects.filter(user=request.user))
@@ -41,16 +43,16 @@ def start(request):
         flashcards.extend(list(temp_flashcards))
 
     if (len(flashcards) == 0):
-        return redirect("index")
+        return HttpResponseRedirect(reverse('srsreview:index'))
 
     reviewSessions[request.user.id] = SRSReview()
     for flashcard in flashcards:
         reviewSessions[request.user.id].addFlashcard(flashcard)
 
-    return redirect("review")
+    return HttpResponseRedirect(reverse('srsreview:session'))
 
-
-@login_required(login_url="login")
+@login_required(login_url="auth:login")
+@csrf_exempt
 def review(request):
     if request.method == 'POST':
         return answerHandler(request)
@@ -62,7 +64,7 @@ def review(request):
         reviewSessions[request.user.id].extendValidTime()
     else:
         # Redirect to dashboard
-        return redirect("index")
+        return HttpResponseRedirect(reverse('srsreview:index'))
 
     flashcards_id = []
     flashcards_question = []
@@ -87,7 +89,7 @@ def review(request):
     }
 
     # TODO: Frontend Implementation
-    return None
+    return render(request, 'review_session.html', context)
     
 def answerHandler(request):
     pk = request.POST.get('id', -1)

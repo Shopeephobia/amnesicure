@@ -11,12 +11,20 @@
 <br>
 
 {% if is_prev_session == True %}
+<h3 class="text-center mt-4 mb-4">Sesi review anda masih berjalan</h3>
+<div class="d-grid gap-2 col-4 mx-auto">
+    <a href="{% url 'srsreview:session' %}" class="btn btn-info btn-block">Lanjutkan Sesi</a>
+    <a href="{% url 'srsreview:start' %}" class="btn btn-info btn-block">Mulai Sesi Baru</a>
+</div>
 
 {% else %}
     {% if number_of_review == 0 %}
     <h3 class="text-center mt-4 mb-4">Belum ada flashcard yang siap direview</h3>
     {% else %}
     <h3 class="text-center mt-4 mb-4">{{ number_of_review }} flashcard siap direview</h3>
+    <div class="d-grid gap-2 col-4 mx-auto">
+        <a href="{% url 'srsreview:start' %}" class="btn btn-info btn-block">Mulai Review</a>
+    </div>
     {% endif %}
 {% endif %}
 
