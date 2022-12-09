@@ -8,8 +8,13 @@
 {% block content %}
     <h1 class="text-center mt-4 mb-4">Daftar Pengajuan Publikasi Dek Kartu</h1>
 
+    {% if message %}
+    <div class="text-center">
+        <p style="display:block;" onclick="dismiss(this);">{{ message }}</p>
+    </div>
+    {% endif %}
+
     <div class="d-flex flex-wrap m-4">
-        
         
         <div class="col">
             <div class="col-md-4 mb-4">
