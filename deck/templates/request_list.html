@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Pengajuan Publikasi Dek | Amnesicure</title>
+{% endblock meta %}
+
+{% block content %}
+    <h1 class="text-center mt-4 mb-4">Daftar Pengajuan Publikasi Dek Kartu</h1>
+
+    {% if message %}
+    <div class="text-center">
+        <p style="display:block;" onclick="dismiss(this);">{{ message }}</p>
+    </div>
+    {% endif %}
+
+    <div class="d-flex flex-wrap m-4">
+        
+        <div class="col">
+            <div class="col-md-4 mb-4">
+                {% for requestItem in requests %}
+                <div class="card h-100 mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ requestItem.private_deck.name }}</h5>
+                        <p>Dibuat Oleh: {{ requestItem.user.username }}</p>
+                        <p>Status Verifikasi: {{ requestItem.isVerified }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'flashcard:list_flashcard_admin' requestItem.pk %}" class="btn btn-primary btn-block">Review Deck</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+
+    </div>
+{% endblock content %}

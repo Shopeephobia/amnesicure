@@ -2,26 +2,49 @@
 {% load static %}
 
 {% block meta %}
-<title>Daftar Dek</title>
+<title>Daftar Dek Kartu Pribadi | Amnesicure</title>
+<script src="{% static 'js/dismiss.js' %}"></script>
 {% endblock meta %}
 
 {% block content %}
-<table class="deck-table">
-    <tr>
-        <th>Nama Dek</th>
-        <th>Detail</th>
-    </tr>
-    {% for deck in decks %}
-    <tr>
-        <td>{{ deck.name }}</td>
-        <td>
-            <a href="{% url 'flashcard:list_flashcard' deck.pk %}">Detail</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+<h1 class="text-center mt-4 mb-4">Daftar Dek Kartu Pribadi</h1>
 
 <br>
 
-<a href="{% url 'deck:create_deck' %}">Buat Dek Baru</a>
+{% if message %}
+<div class="text-center">
+    <p style="display:block;" onclick="dismiss(this);">{{ message }}</p>
+</div>
+{% endif %}
+
+{% if decks|length == 0 %}
+<br>
+<h3 class="text-center mt-4 mb-4">Belum ada dek yang dibuat.</h3>
+{% else %}
+<div class="d-flex flex-wrap m-4">
+    <div class="col">
+        {% for deck in decks %}
+        <div class="col-sm mx-auto">
+            <div class="card h-100 mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ deck.name }}</h5>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'flashcard:list_flashcard' deck.pk %}" class="btn btn-primary btn-block">Lihat Dek</a>
+                    <a href="{% url 'deck:create_request' deck.pk %}" class="btn btn-success btn-block">Ajukan Publikasi</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<br>
+
+<div class="d-grid gap-2 col-4 mx-auto">
+    <a href="{% url 'deck:create_deck' %}" class="btn btn-info btn-block">Buat Dek Baru</a>
+</div>
+
+<br>
 {% endblock content %}

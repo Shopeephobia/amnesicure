@@ -26,7 +26,11 @@
             </div>
         </div> -->
 <br />
-<a href="{% url 'flashcard:add_flashcard' deck_pk %}">Buat Kartu Baru</a>
-<br />
-<a href="{% url 'deck:index' %}">Kembali ke Daftar Dek</a>
+{% if requestItem %}
+    {% if request.user.is_superuser %}
+    <a href="{% url 'deck:verify_deck' requestItem.pk %}" class="btn btn-success btn-block">Accept & Publish</a>
+    <a href="{% url 'deck:reject_deck' requestItem.pk %}" class="btn btn-danger btn-block">Reject</a>
+    {% endif %}
+{% endif %}
+<a href="javascript:history.back()">Kembali ke Daftar Dek</a>
 {% endblock content %}
