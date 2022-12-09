@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block meta %}
-<title>Flashcard Decks</title>
+<title>Pengajuan Publikasi Dek Pribadi | Amnesicure</title>
 {% endblock meta %}
 
 {% block content %}
-    <h1 class="text-center mt-4 mb-4">Flashcard Request List</h1>
+    <h1 class="text-center mt-4 mb-4">Daftar Pengajuan Publikasi Dek Kartu Pribadi</h1>
 
     <div class="d-flex flex-wrap m-4">
         
@@ -20,7 +20,7 @@
                         <p>Status Verifikasi: {{ request.isVerified }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'flashcard:list_flashcard_public' request.private_deck.pk %}" class="btn btn-primary btn-block">View Deck</a>
+                        <a href="{% url 'flashcard:list_flashcard_public' request.private_deck.pk %}" class="btn btn-primary btn-block">Lihat Dek</a>
                     </div>
                 </div>
                 {% endfor %}

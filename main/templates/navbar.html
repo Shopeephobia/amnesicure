@@ -17,14 +17,34 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {% if not request.user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'auth:register' %}">Register</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Daftar Dek Kartu
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'deck:fetch_public_deck' %}">Dek Kartu Publik</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'auth:login' %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'deck:fetch_public_deck' %}">Public Deck</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Akun
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'auth:login' %}">Login</a></li>
+            <li><a class="dropdown-item" href="{% url 'auth:register' %}">Register</a></li>
+          </ul>
         </li>
         {% else %}
         <li class="nav-item dropdown">
@@ -35,24 +55,31 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Dek Kartu
+            Daftar Dek Kartu
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'deck:index' %}">Daftar Dek Pribadi</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="{% url 'deck:create_deck' %}">Buat Dek Baru</a></li>
+            <li><a class="dropdown-item" href="{% url 'deck:fetch_public_deck' %}">Dek Kartu Publik</a></li>
+            <li><a class="dropdown-item" href="{% url 'deck:index' %}">Dek Kartu Pribadi</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'deck:fetch_public_deck' %}">Public Deck</a>
-        </li>
-        {% if request.user.is_superuser %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'deck:fetch_requests' %}">Request Publikasi</a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'deck:fetch_request_private' %}">Request Saya</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Administrasi Dek
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'deck:create_deck' %}">Buat Dek Baru</a></li>
+            <li><a class="dropdown-item" href="{% url 'deck:fetch_request_private' %}">Pengajuan Publikasi Dek Pribadi</a></li>
+            {% if request.user.is_superuser %}
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="{% url 'deck:fetch_requests' %}">Administrasi Pengajuan Publikasi Dek</a></li>
+            {% endif %}
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'auth:logout' %}">Logout</a>
