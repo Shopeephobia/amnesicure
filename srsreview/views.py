@@ -51,7 +51,7 @@ def start(request):
 
     return HttpResponseRedirect(reverse('srsreview:session'))
 
-@login_required(login_url="auth:login")
+#@login_required(login_url="auth:login")
 @csrf_exempt
 def review(request):
     if request.method == 'POST':
@@ -92,8 +92,8 @@ def review(request):
     return render(request, 'review_session.html', context)
     
 def answerHandler(request):
-    pk = request.POST.get('id', -1)
-    answer = request.POST.get('answer', False)
+    pk = int(request.POST.get('id', -1))
+    answer = int(request.POST.get('answer', 0))
 
     if (pk != -1):
         flashcard = PrivateFlashcard.objects.get(pk=pk)
