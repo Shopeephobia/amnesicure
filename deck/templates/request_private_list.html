@@ -20,7 +20,7 @@
                         <p>Status Verifikasi: {{ request.isVerified }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'flashcard:list_flashcard_public' request.private_deck.pk %}" class="btn btn-primary btn-block">Lihat Dek</a>
+                        <a href="{% url 'flashcard:list_flashcard' request.private_deck.pk %}" class="btn btn-primary btn-block">Lihat Dek</a>
                     </div>
                 </div>
                 {% endfor %}
