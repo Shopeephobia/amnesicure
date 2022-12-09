@@ -26,17 +26,19 @@ class SRSReview():
     def extendValidTime(self):
         self.__validUntil = datetime.datetime.now() + datetime.timedelta(minutes=10)
 
-    def answerFlashcard(self, flashcard: PrivateFlashcard, isCorrect: bool):
+    def answerFlashcard(self, flashcard: PrivateFlashcard, isCorrect: int):
         self.extendValidTime()
 
-        if isCorrect == True:
+        if isCorrect == 1:
             flashcard.srsLevel = min(flashcard.srsLevel+1, 4)
         else:
             flashcard.srsLevel = max(flashcard.srsLevel-1, 1)
-        flashcard.nextReviewDate = datetime.datetime.now + datetime.timedelta(hours=(1 << flashcard.srsLevel))
+        flashcard.nextReviewDate = datetime.datetime.now() + datetime.timedelta(hours=(1 << flashcard.srsLevel))
         flashcard.save()
         
         self.removeFlashcard()
+        if len(self.__flashcards) == 0:
+            self.__validUntil = datetime.datetime.now()
 
 
 

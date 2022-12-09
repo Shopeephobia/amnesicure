@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Session | Amnesicure</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script>
+    var data = JSON.parse("{{data|escapejs}}");
+    var length = {{number_of_review}}
+</script>
+<script src="{% static 'review.js' %}"></script>
+{% endblock meta %}
+
+{% block content %}
+<h1 class="text-center mt-4 mb-4">Review</h1>
+
+<h3 class="text-center mt-4 mb-4" id="question">Sample Question</h3>
+
+<div class="d-grid gap-2 col-4 mx-auto">
+    <input type="text" class="form-control" id="answer" placeholder="Answer" aria-label="Username" aria-describedby="basic-addon1">
+    <a class="btn btn-info btn-block" id="submit">Submit</a>
+    <a class="btn btn-info btn-block" id="next">Next Question</a>
+</div>
+
+<div class="feedback_container d-grid gap-2 col-4 mx-auto">
+</div>
+
+{% endblock content %}
