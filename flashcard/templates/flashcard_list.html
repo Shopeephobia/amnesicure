@@ -6,36 +6,17 @@
 {% endblock meta %}
 
 {% block content %}
-<!-- <h1>Nama Dek: {{ deck_name }}</h1>
-<table>
-  <tr>
-    <th>Pertanyaan</th>
-    <th>Jawaban</th>
-  </tr>
-  {% for i in list_flashcard %}
-  <tr>
-    <td>{{ i.question }}</td>
-    <td>{{ i.answer }}</td>
-  </tr>
-  {% endfor %}
-</table> -->
-<!-- <div class="card mb-4 past-card">
-            <div class="card-body">
-                <h4>{{i.question}}</h4>
-                <p>{{i.answer}}</p>
-            </div>
-        </div> -->
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<!-- Team -->
+
 <section id="team" class="pb-5">
     <div class="container">
         <h5 class="section-title h1">Dek: {{ deck_name }}</h5>
         <div class="row">
-            <!-- Team member -->
+
             {% for i in list_flashcard %}
             <div class="col-xs-12 col-sm-6 col-md-4">
               <div class="image-flip" >
@@ -63,21 +44,13 @@
             {% endfor %} 
             
           </div>
-          <!-- ./Team member -->
         <div class="d-grid gap-2 col-4 mx-auto">
-          <a href="{% url 'flashcard:add_flashcard' deck_pk %}" class="btn btn-info btn-block">Buat Dek Baru</a>
+          <a href="{% url 'flashcard:add_flashcard' deck_pk %}" class="btn btn-info btn-block">Buat Kartu Baru</a>
         </div>
     </div>
 </section>
-<!-- Team -->
-<!-- <br />
-<a href="{% url 'flashcard:add_flashcard' deck_pk %}">Buat Kartu Baru</a> -->
-<!-- <br />
-<a href="{% url 'deck:index' %}">Kembali ke Daftar Dek</a> -->
 
 <style>
-  /* FontAwesome for working BootSnippet :> */
-
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 
