@@ -6,31 +6,200 @@
 {% endblock meta %}
 
 {% block content %}
-<h1>Nama Dek: {{ deck_name }}</h1>
-<table>
-  <tr>
-    <th>Pertanyaan</th>
-    <th>Jawaban</th>
-  </tr>
-  {% for i in list_flashcard %}
-  <tr>
-    <td>{{ i.question }}</td>
-    <td>{{ i.answer }}</td>
-  </tr>
-  {% endfor %}
-</table>
-<!-- <div class="card mb-4 past-card">
-            <div class="card-body">
-                <h4>{{i.question}}</h4>
-                <p>{{i.answer}}</p>
-            </div>
-        </div> -->
-<br />
-{% if requestItem %}
-    {% if request.user.is_superuser %}
-    <a href="{% url 'deck:verify_deck' requestItem.pk %}" class="btn btn-success btn-block">Accept & Publish</a>
-    <a href="{% url 'deck:reject_deck' requestItem.pk %}" class="btn btn-danger btn-block">Reject</a>
-    {% endif %}
-{% endif %}
-<a href="javascript:history.back()">Kembali ke Daftar Dek</a>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{% if list_flashcard|length == 0 %}
+<br>
+<h3 class="text-center mt-4 mb-4">Belum ada kartu yang dipublikasikan.</h3>
+{% else %}
+
+<section id="team" class="pb-5">
+  <div class="container">
+    <h5 class="section-title h1">Dek: {{ deck_name }}</h5>
+    <div class="row">
+      
+      {% for i in list_flashcard %}
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="image-flip" >
+          <div class="mainflip flip-0">
+            <div class="frontside">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">{{ i.question }}</h4>
+                  
+                      </div>
+                    </div>
+                  </div>
+                        <div class="backside">
+                          <div class="card">
+                            <div class="card-body-back">
+                              <h4 class="card-title">{{ i.question }}</h4>
+                              <p class="card-text">{{ i.answer }}</p>
+                              {% if request.user.is_superuser %}
+                                <a href="" class="btn btn-primary btn-sm">Delete</a>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %} 
+            
+          </div>
+        </div>
+      </section>
+      {% endif %}
+      <div class="d-grid gap-2 col-4 mx-auto">
+        {% if requestItem %}
+        {% if request.user.is_superuser %}
+        <a href="{% url 'deck:verify_deck' requestItem.pk %}" class="btn btn-success btn-block">Accept & Publish</a>
+        <a href="{% url 'deck:reject_deck' requestItem.pk %}" class="btn btn-danger btn-block">Reject</a>
+        {% endif %}
+        {% endif %}
+        <a href="javascript:history.back()" class="btn btn-info btn-block">Kembali ke Daftar Dek</a>
+      </div>
+      
+      <br />
+      
+      <style>
+        @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+        
+        
+      .card-body{
+        text-align: center;
+        padding-top: 130px;
+      }
+      
+      .card-body-back{
+        text-align: center;
+        padding-top: 100px;
+      }
+      
+      .btn-primary:hover,
+      .btn-primary:focus {
+          background-color: #fe0101;
+          border-color: #fe0101;
+          box-shadow: none;
+          outline: none;
+      }
+      
+      .btn-primary {
+          color: #fff;
+          background-color: #17a2b8;
+          border-color: #17a2b8;
+      }
+      
+      section {
+          padding: 60px 0;
+      }
+      
+      section .section-title {
+          text-align: center;
+          color: #17a2b8;
+          margin-bottom: 50px;
+          text-transform: uppercase;
+      }
+      
+      .card {
+          border: none;
+          background: #eee;
+      }
+      
+      .image-flip:hover .backside,
+      .image-flip.hover .backside {
+          -webkit-transform: rotateY(0deg);
+          -moz-transform: rotateY(0deg);
+          -o-transform: rotateY(0deg);
+          -ms-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+          border-radius: .25rem;
+      }
+      
+      .image-flip:hover .frontside,
+      .image-flip.hover .frontside {
+          -webkit-transform: rotateY(180deg);
+          -moz-transform: rotateY(180deg);
+          -o-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+      }
+      
+      .mainflip {
+          -webkit-transition: 1s;
+          -webkit-transform-style: preserve-3d;
+          -ms-transition: 1s;
+          -moz-transition: 1s;
+          -moz-transform: perspective(1000px);
+          -moz-transform-style: preserve-3d;
+          -ms-transform-style: preserve-3d;
+          transition: 1s;
+          transform-style: preserve-3d;
+          position: relative;
+      }
+      
+      .frontside {
+          position: relative;
+          -webkit-transform: rotateY(0deg);
+          -ms-transform: rotateY(0deg);
+          z-index: 2;
+          margin-bottom: 30px;
+      }
+      
+      .backside {
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: #eee;
+          -webkit-transform: rotateY(-180deg);
+          -moz-transform: rotateY(-180deg);
+          -o-transform: rotateY(-180deg);
+          -ms-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+          -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+          -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+          box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+      }
+      
+      .frontside,
+      .backside {
+          -webkit-backface-visibility: hidden;
+          -moz-backface-visibility: hidden;
+          -ms-backface-visibility: hidden;
+          backface-visibility: hidden;
+          -webkit-transition: 1s;
+          -webkit-transform-style: preserve-3d;
+          -moz-transition: 1s;
+          -moz-transform-style: preserve-3d;
+          -o-transition: 1s;
+          -o-transform-style: preserve-3d;
+          -ms-transition: 1s;
+          -ms-transform-style: preserve-3d;
+          transition: 1s;
+          transform-style: preserve-3d;
+      }
+      
+      .frontside .card,
+      .backside .card {
+          min-height: 312px;
+          width: 320px;
+          height: 120px;
+      
+      }
+      
+      .backside .card a {
+          font-size: 18px;
+          color: #fff !important;
+      }
+      
+      .frontside .card .card-title,
+      .backside .card .card-title {
+          color: #17a2b8 !important;
+      }
+      
+      </style>
+      
+      
 {% endblock content %}
+

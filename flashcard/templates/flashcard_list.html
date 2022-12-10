@@ -11,23 +11,26 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+{% if list_flashcard|length == 0 %}
+<br>
+<h3 class="text-center mt-4 mb-4">Belum ada kartu yang dibuat.</h3>
+{% else %}
 
 <section id="team" class="pb-5">
-    <div class="container">
-        <h5 class="section-title h1">Dek: {{ deck_name }}</h5>
-        <div class="row">
-
-            {% for i in list_flashcard %}
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <div class="image-flip" >
-                <div class="mainflip flip-0">
-                  <div class="frontside">
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">{{ i.question }}</h4>
-                        
-                      </div>
+  <div class="container">
+    <h5 class="section-title h1">Dek: {{ deck_name }}</h5>
+    <div class="row">
+      
+      {% for i in list_flashcard %}
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="image-flip" >
+          <div class="mainflip flip-0">
+            <div class="frontside">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">{{ i.question }}</h4>
                     </div>
+                  </div>
                   </div>
                         <div class="backside">
                           <div class="card">
@@ -41,19 +44,20 @@
                       </div>
                     </div>
                   </div>
-            {% endfor %} 
+                  {% endfor %} 
             
           </div>
-        <div class="d-grid gap-2 col-4 mx-auto">
-          <a href="{% url 'flashcard:add_flashcard' deck_pk %}" class="btn btn-info btn-block">Buat Kartu Baru</a>
         </div>
-    </div>
-</section>
+      </section>
+      {% endif %}
+      <div class="d-grid gap-2 col-4 mx-auto">
+        <a href="{% url 'flashcard:add_flashcard' deck_pk %}" class="btn btn-info btn-block">Buat Kartu Baru</a>
+      </div>
 
 <style>
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
-
+  @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+  
+  
 .card-body{
   text-align: center;
   padding-top: 130px;
