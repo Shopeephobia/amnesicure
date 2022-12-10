@@ -5,5 +5,7 @@ app_name = "flashcard"
 
 urlpatterns = [
     path("<int:pk>", list_flashcard, name="list_flashcard"),
+    path("pub/<int:pk>", list_flashcard_public, name="list_flashcard_public"),
+    path("admin/<int:pk>", list_flashcard_admin, name="list_flashcard_admin"),
     path("<int:pk>/new", form_flashcard, name='add_flashcard'),
 ]

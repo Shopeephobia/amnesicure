@@ -2,8 +2,9 @@ body {
     color: #000;
     overflow-x: hidden;
     height: 100%;
-    background-image: linear-gradient(to right, #FFB1B1, #FFB1B1);
+    background-image: linear-gradient(to right, #BFFFE0, #BFFFE0);
     background-repeat: no-repeat;
+    min-height: 100vh
 }
 
 input,
@@ -25,7 +26,7 @@ textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #D25555 !important;
+    border: 1px solid #20C997 !important;
     outline-width: 0;
     font-weight: 400
 }
@@ -38,7 +39,9 @@ button:focus {
 }
 
 
-
+.container {
+    filter: drop-shadow(0 0 0.75rem #89CFF0);
+}
 .card {
     border-radius: 50px !important;
     border: none #fff !important
@@ -55,12 +58,12 @@ button:focus {
 
 .card2 {
     width: 50%;
-    background-image: linear-gradient(to right, #D25555, #D25555);
+    background-image: linear-gradient(to right, #20C997, #20C997);
 }
 
 #logo {
     width: 70px;
-    height: 60px
+    height: 100px
 }
 
 .heading {
@@ -102,7 +105,7 @@ button:focus {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: #fff;
-    background-image: linear-gradient(to right, #FF0D0D, #FF0D0D);
+    background-image: linear-gradient(to right, #20C997, #20C997);
     padding: 15px;
     cursor: pointer;
     border: none !important;
@@ -111,14 +114,14 @@ button:focus {
 
 .btn-color:hover {
     color: #000;
-    background-image: linear-gradient(to right, #FFB1B1, #FFB1B1)
+    background-image: linear-gradient(to right, #BFFFE0, #BFFFE0)
     
 }
 
 .btn-white {
     border-radius: 50px;
-    color: #D500F9;
-    background-color: #FF0D0D;
+    color: #BFFFE0;
+    background-color: #BFFFE0;
     padding: 8px 40px;
     cursor: pointer;
     border: 2px solid #000 !important
@@ -126,7 +129,7 @@ button:focus {
 
 .btn-white:hover {
     color: #fff;
-    background-image: linear-gradient(to right, #FF0D0D, #FF0D0D)
+    background-image: linear-gradient(to right, #20C997, #20C997)
 }
 
 a {

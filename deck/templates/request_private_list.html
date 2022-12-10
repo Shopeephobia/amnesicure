@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Pengajuan Publikasi Dek Pribadi | Amnesicure</title>
+{% endblock meta %}
+
+{% block content %}
+    <h1 class="text-center mt-4 mb-4">Daftar Pengajuan Publikasi Dek Kartu Pribadi</h1>
+
+    <div class="d-flex flex-wrap m-4">
+        
+        <div class="col">
+            <div class="col-md-4 mb-4">
+                {% for request in requests %}
+                <div class="card h-100 mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ request.private_deck.name }}</h5>
+                        <p>Dibuat Oleh: {{ request.user.username }}</p>
+                        <p>Status Verifikasi: {{ request.isVerified }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'flashcard:list_flashcard' request.private_deck.pk %}" class="btn btn-primary btn-block">Lihat Dek</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

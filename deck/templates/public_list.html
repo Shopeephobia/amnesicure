@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Daftar Dek Kartu Publik | Amnesicure</title>
+{% endblock meta %}
+
+{% block content %}
+    <h1 class="text-center mt-4 mb-4">Daftar Dek Kartu Publik</h1>
+
+    {% if public_decks|length == 0 %}
+    <h3 class="text-center mt-4 mb-4">Belum ada dek yang dipublikasikan.</h3>
+    {% else %}
+    <div class="d-flex flex-wrap m-4">
+        
+        <div class="col">
+            <div class="col-md-4 mb-4 ">
+                {% for deck in public_decks %}
+                <div class="card h-100 mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ deck.public_deck.name }}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'flashcard:list_flashcard_public' deck.public_deck.pk %}" class="btn btn-primary btn-block">Lihat Dek</a>
+                        <a href="#" class="btn btn-secondary btn-block">Impor Dek</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+    {% endif %}
+{% endblock content %}

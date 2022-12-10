@@ -1,6 +1,9 @@
 # Amnesicure - An Unorthodox Flashcard Web App
 
 Super COOL Flashcard App will be coming soon!
+
+[![codecov](https://codecov.io/gh/Shopeephobia/amnesicure/branch/main/graph/badge.svg?token=UCJZWUT2ZM)](https://codecov.io/gh/Shopeephobia/amnesicure)
+
 ---
 
 > Proyek ini dibuat untuk memenuhi tugas kelompok pada mata kuliah Rekayasa Perangkat Lunak (CSCM603125)
@@ -75,9 +78,5 @@ Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nan
    ```
 
 7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
-
-## Referensi
-
-Athallah
 
 [Sophophobia]: https://github.com/Shopeephobia

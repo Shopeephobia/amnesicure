@@ -1,20 +1,28 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Beranda | Amnesicure</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'style.css' %}" />
+{% endblock meta %} {% block content %}
+<div class="banner">
+  <div class="content">
+    <h2>AMNESI <span>CURE</span></h2>
+    <p>Sebuah aplikasi flashcard yang dapat membantu anda dalam menghafal</p>
+    {% if not request.user.is_authenticated %}
+    <div class="alert alert-info" role="alert">
+      Login untuk dapat membuat dek kartu
+    </div>
+    <a href="{% url 'auth:login' %}">Login</a>
+    {% else %}
+    <a href="{% url 'deck:create_deck' %}">Buat Dek Kartu</a>
+    {% endif %}
+  </div>
+</div>
 
-{% block meta %}
-<title>Hello, world!</title>
-{% endblock meta %}
-
-{% block content %}
-  <h1>Hello, world!</h1>
-  <p><img src="{% static 'img/django-logo-negative.svg' %}"></p>
-  {% if not request.user.is_authenticated %}
-  <li class="nav-item active">
-      <a class="nav-link" href="{% url 'login' %}">Login</a>
-  </li>
-  {% else %}
-  <li class="nav-item active">
-      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-  </li>
-  {% endif %}
 {% endblock content %}
